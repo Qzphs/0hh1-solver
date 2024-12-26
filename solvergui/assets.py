@@ -4,8 +4,12 @@ from solvergui.asset import Asset
 
 class Assets:
 
-    colours = {
-        Colour.ORANGE: Asset("solvergui/assets/orange.png"),
-        Colour.BLUE: Asset("solvergui/assets/blue.png"),
-        Colour.UNKNOWN: Asset("solvergui/assets/unknown.png"),
-    }
+    colours = [
+        Asset("solvergui/assets/orange.png"),
+        Asset("solvergui/assets/blue.png"),
+        Asset("solvergui/assets/unknown.png"),
+    ]
+
+    @classmethod
+    def colour(cls, colour: Colour):
+        return cls.colours[colour.index]

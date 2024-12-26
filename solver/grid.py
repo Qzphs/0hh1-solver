@@ -47,10 +47,8 @@ class Grid:
 
     def solve(self):
         """Fill in unknown tiles."""
-        n = 0
         search_frontier = [self]
         while search_frontier:
-            n += 1
             this = search_frontier.pop()
             this.deduce()
             if this.invalid():

@@ -7,9 +7,8 @@ from solvergui.ui import Ui
 
 class TileButton(tkinter.Button):
 
-    def __init__(self, master, grid: Grid, ui: Ui, tile: Tile):
+    def __init__(self, master, ui: Ui, tile: Tile):
         super().__init__(master, command=self.click)
-        self._grid = grid
         self.ui = ui
         self.tile = tile
         self.display()
@@ -19,4 +18,4 @@ class TileButton(tkinter.Button):
         self.ui.display()
 
     def display(self):
-        self.config(image=Assets.colours[self.tile.colour].image())
+        self.config(image=Assets.colour(self.tile.colour).image())

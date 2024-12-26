@@ -11,4 +11,3 @@ class Asset:
         if self._image is None:
             self._image = PhotoImage(file=self.filename)
         return self._image
-

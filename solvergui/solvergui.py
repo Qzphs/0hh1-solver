@@ -20,7 +20,7 @@ class SolverGui(Ui):
         self.tile_frame = tkinter.Frame(self.main_window)
         self.tile_frame.grid(row=0, column=0)
         self.tile_buttons = [
-            TileButton(self.tile_frame, self.grid, self, tile)
+            TileButton(self.tile_frame, self, tile)
             for tile in self.grid.tiles()
         ]
         for tile_button in self.tile_buttons:
