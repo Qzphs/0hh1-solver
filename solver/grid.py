@@ -47,16 +47,33 @@ class Grid:
 
     def solve(self):
         """Fill in unknown tiles."""
+        self.deduce()
+        if len(self.unknowns()) < 20:
+            self._brute_force_enumerate()
+        else:
+            self._brute_force_search()
+
+    def _brute_force_enumerate(self):
+        unknowns = self.unknowns()
+        for seed in range(2 ** len(unknowns)):
+            for i in range(len(unknowns)):
+                unknowns[i].colour = Colour(seed % 2)
+                seed >>= 1
+            if not self.invalid():
+                return
+
+    def _brute_force_search(self):
         search_frontier = [self]
         while search_frontier:
             this = search_frontier.pop()
-            this.deduce()
-            if this.invalid():
-                continue
-            if not this.unknowns():
-                self.replace(this)
-                return
-            search_frontier.extend(self.split())
+            for child in this.split():
+                child.deduce()
+                if child.invalid():
+                    continue
+                if not child.unknowns():
+                    self.replace(child)
+                    return
+                search_frontier.append(child)
 
     def deduce(self):
         """Fill in unknown tiles using basic deductions."""
