@@ -13,6 +13,7 @@ class SolverGui(Ui):
         self.main_window.title("0hh1 solver by Qzphs")
         self.main_window.geometry(f"{600}x{480}")
         self._init_tile_frame()
+        self._init_spacer()
         self._init_control_frame()
         self.display()
 
@@ -26,11 +27,13 @@ class SolverGui(Ui):
         for tile_button in self.tile_buttons:
             tile_button.grid(row=tile_button.tile.u, column=tile_button.tile.v)
 
+    def _init_spacer(self):
+        self.spacer = tkinter.Frame(self.main_window, width=20)
+        self.spacer.grid(row=0, column=1)
+
     def _init_control_frame(self):
         self.control_frame = tkinter.Frame(self.main_window)
-        self.control_frame.grid(
-            row=0, column=1, padx=(20, 0), sticky=tkinter.N
-        )
+        self.control_frame.grid(row=0, column=2, sticky=tkinter.N)
         self.clear_button = tkinter.Button(
             self.control_frame, text="clear", command=self.clear
         )
